@@ -1,27 +1,23 @@
-# 📚 Referencias Bibliográficas del Taller
+📚 Referencias Bibliográficas del Taller
 
-Este archivo contiene las fuentes consultadas para el desarrollo del taller, tanto para el componente técnico como para la investigación complementaria.
+🔖 Taller
 
-## 🔖 Taller
-_Taller X - [Nombre del Taller]_
+Taller 3 - Arquitectura Actual del Sistema con el Modelo C4
 
----
+Fecha: 04/09/2026
 
-## 📚 Referencias utilizadas
+Integrantes: Esteban Díaz y Juliana Moreno
 
-1. Apellido, Nombre. *Título del libro o artículo*. Editorial, Año. URL o DOI.  
-2. Organización. *Especificación técnica o estándar consultado*. URL.  
-3. Sitio web institucional. "Título del artículo o página". [Enlace](https://ejemplo.com). Fecha de consulta: DD/MM/AAAA.  
-4. Otro recurso académico o técnico citado.
+📚 Referencias utilizadas
 
----
+Brown, Simon. The C4 Model for Visualising Software Architecture. C4 Model. Disponible en https://c4model.com/ . Fecha de consulta: 04/09/2026.
 
-## 📌 Recomendaciones
+C4 Model. Diagrams. Sitio oficial del modelo C4. Disponible en https://c4model.com/diagrams . Fecha de consulta: 04/09/2026.
 
-- Usa formato APA o IEEE para citar.
-- No incluyas fuentes como Wikipedia si hay mejores alternativas.
-- Si usas inteligencia artificial para redactar o investigar, cítalo como "Fuente asistida por IA: ChatGPT, julio 2025".
+Universidad de La Sabana. Taller 3: Arquitectura Actual del Sistema con el Modelo C4. Material proporcionado para el curso AREM. Fecha: 04/09/2026.
 
----
+Universidad de La Sabana. Guía Paso a Paso: Arquitectura Actual del Sistema con el Modelo C4. Material proporcionado para el curso AREM. Fecha: 04/09/2026.
 
-_Este archivo forma parte de la entrega académica del curso AREM - Universidad de La Sabana._
+
+
+Este archivo forma parte de la entrega académica del Taller 3 del curso AREM - Universidad de La Sabana.
