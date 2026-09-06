@@ -1,41 +1,43 @@
 <mxfile host="app.diagrams.net">
-  <diagram name="Página-1" id="UUismvxK2AwXEjy94C4l">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+  <diagram name="Page-1" id="LlHYshXHDPGYRY81z81i">
+    <mxGraphModel dx="1414" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="usuario" parent="1" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#1168bd;fontColor=#ffffff;strokeColor=#0b4884;fontSize=13;" value="Usuario Final&#xa;Rastrea envíos y agenda recogidas" vertex="1">
-          <mxGeometry height="80" width="190" x="60" y="180" as="geometry" />
+        <mxCell id="titulo" parent="1" style="text;html=1;fontStyle=1;fontSize=16;align=left;verticalAlign=middle;" value="C1 - Vista de Contexto - Sistema Oasis" vertex="1">
+          <mxGeometry height="30" width="500" x="40" y="20" as="geometry" />
         </mxCell>
-        <mxCell id="mensajero" parent="1" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#1168bd;fontColor=#ffffff;strokeColor=#0b4884;fontSize=13;" value="Mensajero&#xa;Actualiza estado de entregas" vertex="1">
-          <mxGeometry height="80" width="190" x="60" y="330" as="geometry" />
+        <mxCell id="cliente" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1168bd;strokeColor=#0b4884;fontColor=#ffffff;fontStyle=1;" value="&amp;nbsp;Cliente&lt;br&gt;&lt;font style=&quot;font-weight: normal;font-size: 11px&quot;&gt;(15-25 años, contacta por redes/WhatsApp)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="200" x="40" y="120" as="geometry" />
         </mxCell>
-        <mxCell id="operador" parent="1" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#1168bd;fontColor=#ffffff;strokeColor=#0b4884;fontSize=13;" value="Operador Logístico&#xa;Gestiona rutas y despachos" vertex="1">
-          <mxGeometry height="80" width="190" x="60" y="480" as="geometry" />
+        <mxCell id="propietario" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1168bd;strokeColor=#0b4884;fontColor=#ffffff;fontStyle=1;" value="&amp;nbsp;Propietario&lt;br&gt;&lt;font style=&quot;font-weight: normal;font-size: 11px&quot;&gt;(elaboración, compras, catálogo)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="200" x="40" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="redexpress" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#08427b;fontColor=#ffffff;strokeColor=#052e56;fontSize=16;fontStyle=1;" value="Plataforma RedExpress&#xa;&#xa;Sistema en alcance" vertex="1">
-          <mxGeometry height="170" width="300" x="430" y="290" as="geometry" />
+        <mxCell id="atencion" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1168bd;strokeColor=#0b4884;fontColor=#ffffff;fontStyle=1;" value="&amp;nbsp;Encargada de Atención&lt;br&gt;&lt;font style=&quot;font-weight: normal;font-size: 11px&quot;&gt;(&quot;Mamá&quot; - contacto y redes)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="200" x="40" y="400" as="geometry" />
         </mxCell>
-        <mxCell id="notif" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8a8a8a;fontColor=#ffffff;strokeColor=#5c5c5c;dashed=1;fontSize=13;" value="API de Notificaciones&#xa;&#xa;Sistema externo" vertex="1">
-          <mxGeometry height="90" width="220" x="880" y="220" as="geometry" />
+        <mxCell id="sistema" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#08427b;strokeColor=#052e56;fontColor=#ffffff;fontStyle=1;fontSize=13;" value="&amp;nbsp;Sistema Oasis&lt;br&gt;&lt;font style=&quot;font-weight: normal;font-size: 11px&quot;&gt;Plataforma de Gestión de Clientes y Pedidos&lt;/font&gt;" vertex="1">
+          <mxGeometry height="140" width="280" x="420" y="230" as="geometry" />
         </mxCell>
-        <mxCell id="geo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8a8a8a;fontColor=#ffffff;strokeColor=#5c5c5c;dashed=1;fontSize=13;" value="Proveedor de Geolocalización&#xa;&#xa;Sistema externo" vertex="1">
-          <mxGeometry height="90" width="220" x="880" y="420" as="geometry" />
+        <mxCell id="whatsapp" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#8a8a8a;strokeColor=#5c5c5c;fontColor=#ffffff;fontStyle=1;strokeWidth=2;" value="&amp;nbsp;WhatsApp Business API&lt;br&gt;&lt;font style=&quot;font-weight: normal;font-size: 11px&quot;&gt;Sistema externo&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="220" x="880" y="250" as="geometry" />
         </mxCell>
-        <mxCell id="e1" edge="1" parent="1" source="usuario" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;fontSize=11;" target="redexpress" value="Rastrea envíos y agenda recogidas">
+        <mxCell id="e1" edge="1" parent="1" source="cliente" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;" target="sistema" value="Envía solicitud de arreglo y&amp;nbsp;&lt;div&gt;consulta estado del pedido&lt;/div&gt;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e2" edge="1" parent="1" source="mensajero" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;fontSize=11;" target="redexpress" value="Actualiza estado de entregas">
+        <mxCell id="e2" edge="1" parent="1" source="propietario" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;" target="sistema" value="Registra catálogo, precios&amp;nbsp;&lt;div&gt;y actualiza elaboración/entrega&lt;/div&gt;">
+          <mxGeometry relative="1" x="-0.0526" y="-20" as="geometry">
+            <mxPoint x="-20" y="20" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="atencion" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;" target="sistema" value="Revisa panel de solicitudes&amp;nbsp;&lt;div&gt;pendientes y gestiona contacto&lt;/div&gt;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e3" edge="1" parent="1" source="operador" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;fontSize=11;" target="redexpress" value="Gestiona rutas y despachos">
+        <mxCell id="e4" edge="1" parent="1" source="sistema" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;fontSize=11;" target="whatsapp" value="Envía notificación&amp;nbsp;&lt;div&gt;automática&amp;nbsp;&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212)); color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;de cambio&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212)); color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;de estado (API REST)&lt;/span&gt;&lt;/div&gt;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e4" edge="1" parent="1" source="redexpress" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;fontSize=11;" target="notif" value="Envía alertas de estado (API REST)">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e5" edge="1" parent="1" source="redexpress" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;fontSize=11;" target="geo" value="Consulta coordenadas y calcula rutas (API REST)">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="leyenda" parent="1" style="text;html=1;fontSize=11;align=left;verticalAlign=top;fontColor=#666666;" value="Nota: Instagram, pasarelas de pago y proveedores de flores no se incluyen porque, según el plan de cambio del cliente, siguen operando como canales/procesos manuales sin integración directa de datos con el Sistema Oasis." vertex="1">
+          <mxGeometry height="40" width="700" x="40" y="520" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
