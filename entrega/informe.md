@@ -1,62 +1,52 @@
 # 📄 Informe Técnico del Taller
 
 ## 🔖 Nombre del Taller
-
-**Taller 3 - Arquitectura Actual del Sistema con el Modelo C4**
-
-**Fecha:** 04/09/2026
+Taller 3 - Arquitectura Actual del Sistema con el Modelo C4
 
 ## 👥 Integrantes del equipo
-
-- Esteban Díaz
-- Juliana Moreno
+- Esteban Díaz Vargas
+- Katherin Juliana Moreno Carvajal
 
 ## 🧠 Descripción general del trabajo
+El objetivo de esta Parte 2 fue representar, mediante las vistas C1 (Contexto) y C2 (Contenedores) del modelo C4, la arquitectura del sistema real del cliente: **Oasis Atelier Floral**, una floristería personalizada de Sopó (Cundinamarca) gestionada por dos personas (el propietario y su mamá, encargada de atención).
 
-El objetivo de la Parte 1 del taller fue representar la arquitectura actual del sistema de **RedExpress** utilizando las vistas C1 (Contexto) y C2 (Contenedores) del modelo C4.
-
-RedExpress es una empresa nacional de logística y envíos que ofrece servicios de rastreo de paquetes y gestión de operaciones logísticas. Para representar su arquitectura se identificaron los principales actores que interactúan con el sistema, los sistemas externos y los componentes internos que permiten prestar sus servicios.
-
-El trabajo se realizó directamente en **draw.io**. No se elaboró un boceto inicial previo.
+A diferencia del caso base RedExpress, Oasis no cuenta actualmente con ningún sistema de información propio: toda la gestión de clientes y pedidos se realiza de forma manual mediante Instagram y WhatsApp. Por esta razón, el C1 y el C2 aquí documentados representan la arquitectura del **sistema objetivo (TO-BE)** que el equipo diseñó en los talleres previos de BPMN y modelo de información, y que se formalizó tecnológicamente en la sección de Arquitectura Tecnológica del informe de BPMN (contenedor web, API REST y base de datos relacional).
 
 ## 🔧 Proceso de desarrollo
 
-Primero se identificaron los actores de la vista de contexto: **Usuario Final, Mensajero y Operador Logístico**. Posteriormente se estableció la **Plataforma RedExpress** como sistema en alcance y se identificaron como sistemas externos la **API de Notificaciones** y el **Proveedor de Geolocalización**.
+**C1 - Vista de Contexto:** se identificaron los tres actores humanos que interactúan directamente con el sistema — **Cliente** (15-25 años, solicita arreglos y consulta el estado de su pedido), **Propietario** (gestiona catálogo, precios y elaboración) y **Encargada de Atención** ("Mamá", revisa el panel de solicitudes y el contacto con clientes) —, tomados directamente de la ficha de caracterización y del BPMN del proceso. Se definió **Sistema Oasis** como el sistema en alcance y se identificó un único sistema externo con integración digital real: **WhatsApp Business API**, prevista en la Fase 3 del plan de migración para notificaciones automáticas de cambio de estado.
 
-Para las relaciones del C1 se utilizaron etiquetas que describen las acciones o información intercambiada. El Usuario Final rastrea envíos y agenda recogidas; el Mensajero actualiza el estado de las entregas; y el Operador Logístico gestiona rutas y despachos. La plataforma utiliza la API de Notificaciones para enviar alertas de estado y el Proveedor de Geolocalización para consultar coordenadas y apoyar el cálculo de rutas.
+Se decidió **no incluir** a Instagram, las pasarelas de pago (Nequi/Daviplata) ni a los proveedores de flores como sistemas externos del C1, porque el plan de cambio del cliente es explícito en que "Instagram y WhatsApp continuarán siendo los canales de comunicación con los clientes" de forma independiente al sistema, y ninguno de esos tres tiene hoy una integración de datos prevista con el Sistema Oasis.
 
-Después se realizó el C2 mediante la descomposición de la Plataforma RedExpress. Se identificaron la **App Móvil**, el **Portal Web Operadores**, el **Módulo de Gestión de Paquetes**, el **Motor de Rutas**, el **Seguimiento GPS** y el **Sistema de Alertas**. También se representaron el **Balanceador de Carga** y la **Base de Datos Distribuida** como infraestructura de soporte.
-
-Finalmente, se etiquetaron las relaciones del C2 con los mecanismos de comunicación correspondientes, entre ellos HTTPS/JSON, HTTPS, SQL, REST y Push/WebSocket.
+**C2 - Vista de Contenedores:** se descompuso el Sistema Oasis en los tres elementos ya definidos en la sección de Arquitectura Tecnológica del Taller de BPMN: una **App Web Oasis** (aplicación web ligera, acceso desde el celular vía navegador, sin instalación), una **API REST Oasis** (gestiona solicitudes, cotizaciones, pedidos, estados y notificaciones, y actúa como punto central de acceso a los datos) y una **Base de Datos Oasis** (SQL relacional, con las ocho entidades ya modeladas en el Taller de Modelo de Información: Cliente, Solicitud, Cotización, Pedido, Arreglo, Materia Prima, Proveedor y Entrega). Se conectaron los tres actores del C1 con la App Web (HTTPS), la App Web con la API (REST/JSON), la API con la base de datos (SQL) y la API con WhatsApp Business API (REST, para el envío de notificaciones).
 
 ## 🧩 Análisis del modelo propuesto
 
-### Vista de Contexto (C1)
+### Cómo se estructura el modelo
+El modelo es deliberadamente minimalista: un único sistema en alcance con un solo sistema externo en el C1, y tres elementos (dos contenedores más la base de datos) en el C2, sin balanceador de carga ni separación geográfica.
 
-El C1 representa la Plataforma RedExpress como una sola unidad, permitiendo observar su relación con el entorno sin entrar todavía en su estructura interna. Los actores identificados representan los principales roles humanos que utilizan el sistema, mientras que la API de Notificaciones y el Proveedor de Geolocalización representan servicios externos con los que la plataforma se integra.
+### Cómo representa las necesidades del cliente
+Esta simplicidad no es una limitación del ejercicio sino una decisión de modelado que refleja directamente la restricción declarada por el cliente en la ficha de caracterización: *"se busca evitar infraestructura costosa o soluciones demasiado complejas"* y *"se priorizarían tecnologías gratuitas o de bajo costo"*. Un negocio de dos personas que atiende entre 15 y 20 pedidos mensuales no requiere balanceo de carga, múltiples instancias ni separación por zona — al contrario de RedExpress, que sí necesita esa complejidad por operar a escala nacional con picos de demanda en campañas.
 
-Esta separación permite mantener el nivel de abstracción del C1 y evitar incluir componentes internos que corresponden al nivel C2.
+### Diferencias explícitas con el caso base (RedExpress)
 
-### Vista de Contenedores (C2)
+| Aspecto | RedExpress (caso base) | Oasis (cliente real) |
+|---|---|---|
+| Punto de partida | Sistema ya en producción, con arquitectura existente que se documenta | No existe sistema propio; el C1/C2 documenta la arquitectura objetivo (TO-BE) aún no construida |
+| Contenedores en C2 | 6 contenedores especializados (App Móvil, Portal Web, Gestión de Paquetes, Motor de Rutas, GPS, Alertas) | 3 elementos (App Web, API REST, Base de Datos) — un solo backend monolítico |
+| Infraestructura de soporte | Balanceador de carga + base de datos distribuida por región | Sin balanceador; una única base de datos relacional, sin necesidad de distribución geográfica |
+| Sistemas externos (C1) | 2 integraciones críticas en tiempo real (Notificaciones, Geolocalización) | 1 integración externa (WhatsApp Business API), y prevista para una fase posterior del plan de migración, no desde el lanzamiento |
+| Escala y usuarios | Operación nacional, múltiples regiones, alta concurrencia | 2 usuarios internos del sistema, ~15-20 clientes atendidos al mes |
 
-El C2 amplía la Plataforma RedExpress y muestra los principales contenedores y elementos de infraestructura que la componen. Cada contenedor tiene una responsabilidad diferenciada.
-
-La App Móvil permite la interacción de usuarios finales y mensajeros. El Portal Web permite al operador logístico gestionar las operaciones. El Módulo de Gestión de Paquetes centraliza la gestión de paquetes y coordina otros servicios. El Motor de Rutas permite solicitar rutas óptimas utilizando el proveedor de geolocalización. El Seguimiento GPS gestiona la ubicación en tiempo real y el Sistema de Alertas permite generar notificaciones.
-
-El Balanceador de Carga distribuye las solicitudes hacia los servicios internos y la Base de Datos Distribuida permite persistir la información necesaria para la operación.
-
-### Supuestos
-
-Para el modelo se asumió que la API de Notificaciones y el Proveedor de Geolocalización son servicios externos a la Plataforma RedExpress. También se asumió que los actores interactúan con la plataforma mediante las aplicaciones correspondientes y que los contenedores internos se comunican mediante los protocolos indicados en la guía.
+### Supuestos tomados
+- Se asumió que el "Sistema Oasis" corresponde a la arquitectura objetivo definida en los talleres de BPMN (TO-BE) y Modelo de Información, ya que el cliente actualmente no opera ningún sistema propio.
+- Se asumió que Instagram, las pasarelas de pago y los proveedores de flores permanecen fuera del sistema por decisión explícita del plan de cambio del cliente, y por tanto no se modelan como sistemas externos del C1.
+- Se asumió que la integración con WhatsApp Business API corresponde a la Fase 3 del plan de migración (0 a 6+ meses), por lo que se representa en el C1/C2 como la arquitectura de destino, no como parte del MVP inicial (Fase 1, sin desarrollo).
+- No se incluyó el proveedor de hosting cloud (Railway/Render/Supabase) como contenedor del C2, ya que corresponde a una decisión de despliegue/infraestructura que se documentará en el Taller 4.
 
 ## 📈 Diagrama final entregado
-
-El diagrama final fue elaborado en **draw.io** e incluye las vistas:
-
-- **C1 - Vista de Contexto**
-- **C2 - Vista de Contenedores**
-
-
+- `c1-contexto-final.drawio` — Vista de Contexto del Sistema Oasis.
+- `c2-contenedores-final.drawio` — Vista de Contenedores del Sistema Oasis.
 
 ## 📋 Tabla de actores, entidades o componentes
 
@@ -74,20 +64,20 @@ El diagrama final fue elaborado en **draw.io** e incluye las vistas:
 ## 🔍 Investigación complementaria
 
 ### Tema investigado:
-
-**Modelo C4 para la documentación de arquitectura de software: vistas de Contexto y Contenedores.**
+Aplicación del modelo C4 en arquitecturas de comercio minorista y e-commerce a pequeña escala.
 
 ### Resumen:
+La documentación técnica sobre C4 en comercio electrónico coincide en que el nivel de detalle del modelo debe escalar con la complejidad real del sistema, no con lo que "podría" construirse: un caso guiado de una tienda de sombreros a pequeña escala muestra que, incluso en un contexto de e-commerce, un contexto (C1) con dos sistemas y un contenedor (C2) monolítico simple es una representación completa y honesta cuando el negocio no requiere más [2]. Esto respalda la decisión de modelar Oasis con solo tres elementos en el C2, en lugar de forzar una descomposición en microservicios que no se justifica para su escala actual.
 
-El modelo C4 permite representar la arquitectura de software mediante diferentes niveles de abstracción. La vista de contexto corresponde al nivel 1 y muestra el sistema en alcance junto con las personas y sistemas externos que interactúan con él. La vista de contenedores corresponde al nivel 2 y permite ampliar el sistema para mostrar las aplicaciones, servicios y almacenes de datos que lo componen. Esta separación ayuda a comunicar la arquitectura a diferentes tipos de audiencia y evita mezclar niveles de detalle.
-
-Para este taller, la aplicación del modelo C4 permitió representar RedExpress primero desde una perspectiva general y posteriormente desde una perspectiva técnica. En C1 se priorizó la identificación de actores, sistemas externos y relaciones; en C2 se incorporaron los contenedores, la infraestructura y los mecanismos de comunicación. Esta forma de representación coincide con la estructura definida en la guía del taller y facilita validar que cada elemento tenga una responsabilidad y un nivel de abstracción adecuado.
-
-
+Por otro lado, comparaciones de arquitecturas de e-commerce documentadas con C4 muestran que la decisión entre un backend monolítico (una sola API que centraliza toda la lógica) y una arquitectura de microservicios (un contenedor separado por dominio: inventario, pedidos, pagos) depende directamente del volumen de operaciones y del tamaño del equipo que debe mantener el sistema [1][3]. Para un equipo de una sola persona desarrollando el sistema y una operación de menos de 20 pedidos mensuales, el patrón monolítico (App Web + API REST + Base de Datos) es la opción documentada como apropiada, reservando la separación en microservicios para cuando el crecimiento del negocio lo amerite — un camino de evolución coherente con el plan de migración por fases ya definido para Oasis.
 
 ## 📚 Referencias
 
-Las referencias utilizadas y la información de investigación complementaria se encuentran registradas en `referencias.md`.
+1. Miro / Visual Paradigm. *What is C4 Model? Complete Guide for Software Architecture — caso de plataforma de e-commerce*. Disponible en https://miro.com/diagramming/c4-model-for-software-architecture/ . Fecha de consulta: 05/09/2026.
+2. Hayes, Matt. *Diagrams with C4 Model — Architectural Kata: Horrendous Hats Inc. (e-commerce a pequeña escala)*. Disponible en https://mattjhayes.com/2020/05/10/diagrams-with-c4-model/ . Fecha de consulta: 05/09/2026.
+3. IcePanel. *How to create common architecture diagrams with the C4 model — ejemplo monolito vs. microservicios en e-commerce (Online Boutique)*. Disponible en https://icepanel.io/blog/2025-01-30-how-to-create-common-architecture-diagrams-with-the-c4-model . Fecha de consulta: 05/09/2026.
+4. Brown, Simon. *The C4 Model for Visualising Software Architecture*. Disponible en https://c4model.com/ . Fecha de consulta: 05/09/2026.
+5. Universidad de La Sabana. *Guía Paso a Paso: Arquitectura Actual del Sistema con el Modelo C4* - Taller 3, curso Arquitectura Empresarial. 2026.
 
 ---
 
