@@ -60,22 +60,16 @@ El diagrama final fue elaborado en **draw.io** e incluye las vistas:
 
 ## 📋 Tabla de actores, entidades o componentes
 
-| Nombre del elemento | Tipo | Descripción | 
+| Nombre del elemento | Tipo | Descripción | Responsable |
 |---|---|---|---|
-| Usuario Final | Actor | Rastrea envíos y agenda recogidas |
-| Mensajero | Actor | Actualiza el estado de las entregas |
-| Operador Logístico | Actor | Gestiona rutas y despachos |
-| Plataforma RedExpress | Sistema | Sistema principal en alcance |
-| API de Notificaciones | Sistema externo | Servicio utilizado para enviar alertas |
-| Proveedor de Geolocalización | Sistema externo | Servicio utilizado para coordenadas y cálculo de rutas |
-| App Móvil | Contenedor | Aplicación para usuarios finales y mensajeros |
-| Portal Web Operadores | Contenedor | Aplicación utilizada por operadores logísticos |
-| Módulo de Gestión de Paquetes | Contenedor | Gestiona la información y operaciones de paquetes |
-| Motor de Rutas | Contenedor | Solicita y procesa rutas óptimas |
-| Seguimiento GPS | Contenedor | Gestiona información de ubicación en tiempo real |
-| Sistema de Alertas | Contenedor | Gestiona eventos y envío de alertas |
-| Balanceador de Carga | Infraestructura | Distribuye las solicitudes entrantes |
-| Base de Datos Distribuida | Infraestructura | Almacena información de paquetes, rutas y usuarios |
+| Cliente | Actor | Solicita arreglos florales personalizados y consulta el estado de su pedido | Cliente |
+| Propietario | Actor | Elabora los arreglos, gestiona el catálogo, precios y compras de materia prima | Equipo Oasis |
+| Encargada de Atención | Actor | Revisa el panel de solicitudes pendientes y gestiona el contacto con los clientes | Equipo Oasis |
+| Sistema Oasis | Sistema en alcance | Plataforma de gestión de clientes y pedidos a construir para el negocio | Equipo Oasis |
+| WhatsApp Business API | Sistema externo | Envío automático de notificaciones de cambio de estado del pedido (Fase 3) | Proveedor externo (Meta) |
+| App Web Oasis | Contenedor | Aplicación web ligera de acceso vía navegador, sin instalación | Equipo Oasis |
+| API REST Oasis | Contenedor | Gestiona solicitudes, cotizaciones, pedidos, estados y notificaciones | Equipo Oasis |
+| Base de Datos Oasis | Infraestructura | Almacenamiento SQL relacional de las 8 entidades del negocio | Equipo Oasis |
 
 ## 🔍 Investigación complementaria
 
